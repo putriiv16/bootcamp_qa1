@@ -11,7 +11,6 @@ test('Successful Login Attempt using Page Object Model @p0 @login @positive', as
 
   // step to reproduce 
   await loginPage.loginAs(email, password);
-  // await loginPage.loginButton.click();
 });
 
   test('Successful Login Attempt @p0 using CodeGEN', async ({ page }) => {
