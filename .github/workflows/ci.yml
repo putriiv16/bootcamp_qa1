@@ -22,12 +22,12 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+      # - name: Install Playwright Browsers
+      #   run: npx playwright install --with-deps
 
       - name: Run Playwright Tests
         run: |
-          cd /app
+          cd C:\Files\bootcamp_qa1
           bash docker.sh
 
       - name: Upload Test Results
