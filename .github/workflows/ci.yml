@@ -27,7 +27,7 @@ jobs:
 
       - name: Run Playwright Tests
         run: |
-          cd C:\Files\bootcamp_qa1
+          cd /app
           bash docker.sh
 
       - name: Upload Test Results
