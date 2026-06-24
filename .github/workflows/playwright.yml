@@ -1,29 +1,37 @@
-name: Playwright Tests
+name: Playwright Tests and CI Pipeline
 on:
   push:
     branches: [main, master]
   pull_request:
     branches: [main, master]
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    # container:
-    # image: putri051/bootcamp_qa1:base
+    container:
+      image: putri051/bootcamp_qa1:base
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: lts/*
 
       - name: Install dependencies
         run: npm ci
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
 
       - name: Run Playwright tests
         run: npx playwright test
+        env:
+          PLAYWRIGHT_BROWSERS_PATH: /ms-playwright
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
